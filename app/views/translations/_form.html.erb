@@ -1,0 +1,21 @@
+<%= form_for([@lesson, @lesson.translations.build]) do |f| %>
+	<p>
+		<%= f.label :first_language %>
+		<%= f.text_field :first_language %>
+	</p>
+	<p>
+		<%= f.label :second_language %>
+		<%= f.text_field :second_language %>
+	</p>
+	<p>
+		<%= f.label :tip %>
+		<%= f.text_area :tip %>
+	</p>
+	<p>
+		<%= f.label :example %>
+		<%= f.text_area :example %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

@@ -1,0 +1,22 @@
+<h1>Your lessons:</h1>
+
+<%= link_to 'new lesson', new_lesson_path %>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Words</th>
+	</tr>
+	<% @lessons.each do |lesson| %>
+		<tr>
+			<td><%= lesson.title %></td>
+			<td><%= lesson.description %></td>
+			<td><%= lesson.words_qty %></td>
+			<td><%= link_to 'show', lesson_path(lesson)%></td>
+			<td><%= link_to 'edit', edit_lesson_path(lesson)%></td>
+			<td><%= link_to 'delete', lesson_path(lesson), method: :delete, 
+			data: {confirm: 'Are you sure?'}%></td>
+		</tr>
+	<% end%>
+	
+</table>
