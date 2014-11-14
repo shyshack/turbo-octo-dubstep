@@ -7,12 +7,17 @@ class TranslationsController < ApplicationController
   def create
     @lesson = Lesson.find(params[:lesson_id])
     @translation = @lesson.translations.create(translations_params)
+   
+    redirect_to lesson_path(@lesson)
+
+  end
+  
+  def destroy
+    @lesson = Lesson.find(params[:lesson_id])
+    @translation = @lesson.translations.find(params[:id])
+    @translation.destroy
     
-    if @translation.save
-      redirect_to lesson_path(@lesson)
-    else 
-      render 'lessons/show'
-    end
+    redirect_to lesson_path(@lesson)
   end
   
   private 

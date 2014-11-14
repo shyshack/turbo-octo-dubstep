@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
   
   def show
     @lesson = Lesson.find(params[:id])
-    binding.pry
+    #binding.pry
     @lesson_translations = @lesson.translations.to_a.delete_if { |x| x.new_record? }
   end
   

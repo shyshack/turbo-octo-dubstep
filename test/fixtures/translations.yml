@@ -3,13 +3,13 @@
 one:
   first_language: MyString
   second_language: MyString
-  association: MyString
+  tip: MyString
   example: MyString
   lesson_id: 
 
 two:
   first_language: MyString
   second_language: MyString
-  association: MyString
+  tip: MyString
   example: MyString
   lesson_id: 
