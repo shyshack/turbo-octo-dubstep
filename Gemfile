@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',                '4.2.0.beta4'
+gem 'bootstrap-sass',       '3.2.0.0'
 gem 'sass-rails',           '5.0.0.beta1'
 gem 'uglifier',             '2.5.3'
 gem 'coffee-rails',         '4.0.1'
@@ -23,6 +24,7 @@ group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
   gem 'guard-minitest',     '2.3.1'
+  gem 'guard'
 end
 
 group :production do
