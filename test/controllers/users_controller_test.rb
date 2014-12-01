@@ -43,4 +43,13 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to root_url
   end
+  
+  test 'should not allow to change admin attribute' do
+    log_in_as(@other_user)
+    assert_not @other_user.admin?
+    patch :update, id: @other_user, user: { name: @other_user.name,
+                                            email: @other_user.email,
+                                            admin: true }
+    assert_not @other_user.reload.admin?
+  end
 end

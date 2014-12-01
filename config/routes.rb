@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  #get 'welcome/index'
-
+  resources :account_activations, only: [:edit]
   resources :users
   #resources :lessons
 
