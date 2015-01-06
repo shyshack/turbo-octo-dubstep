@@ -1,9 +1,10 @@
 require 'bcrypt'
 
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
+  before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:index, :destroy]
+  before_action :correct_or_admin, only: :show
   
   def index
     @users = User.paginate(page: params[:page])
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @lessons = @user.lessons.paginate(page: params[:page])
   end
   
   def new
@@ -54,15 +56,6 @@ class UsersController < ApplicationController
     
     # Before filters
     
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-    
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
@@ -72,5 +65,12 @@ class UsersController < ApplicationController
     # Confirms on admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+    
+    # Confirms on the correct user or admin
+    def correct_or_admin
+      @user = User.find(params[:id])
+      logged_user = current_user
+      redirect_to logged_user unless current_user?(@user) || logged_user.admin?
     end
 end

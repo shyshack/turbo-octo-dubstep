@@ -5,4 +5,24 @@
       <%= render @user %>
     </section>
   </aside>
+  <div class="col-md-8 subpage">
+  <% if @user.lessons.any? %>
+    <h3> 
+      <div class="subpage_title">
+        Lessons (<%= @user.lessons.count %>)
+      </div>
+      <div class="buttons" >
+        <%= link_to new_lesson_path, title: "add new lesson" do %>
+          <span class="glyphicon glyphicon-plus add"></span>
+        <% end %>
+      </div>
+    </h3>
+    <ol class="lessons">
+      <%= render @lessons %>
+    </ol>
+    <div class="pagination">
+      <%= will_paginate @lessons %>
+    </div>
+  <% end %>
+  </div>
 </div>

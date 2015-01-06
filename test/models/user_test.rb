@@ -61,4 +61,12 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do 
     assert_not @user.authenticated?(:remember, '')
   end
+  
+  test 'associatied lesson should be destroyed with the user' do 
+    @user.save
+    @user.lessons.create!(title: 'dupadupa')
+    assert_difference 'Lesson.count', -1 do
+      @user.destroy
+    end
+  end
 end

@@ -1,11 +1,38 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: "First lesson"
+  description: "This is a first lesson"
   words_qty: 1
+  created_at: <%= 10.years.ago %>
+  user: ignacy
 
 two:
-  title: MyString
-  description: MyText
+  title: "Second lesson"
+  description: "Yeah, I don't learn too often"
   words_qty: 1
+  created_at: <%= 10.minutes.ago %>
+  user: ignacy
+  
+most_recent:
+  title: "Most recent lesson"
+  description: "For a test purpose"
+  words_qty: 100
+  created_at: <%= Time.zone.now %>
+  user: ignacy
+
+<% 31.times do |n| %>
+lesson_<%= n %>:
+  title: <%= "title_#{n}" %>
+  description: <%= Faker::Lorem.sentence(5) %>
+  words_qty: <%= n %>
+  created_at: <%= 42.days.ago %>
+  user: ignacy
+  
+other_lesson_<%= n %>:
+  title: <%= "title_#{n}" %>
+  description: <%= Faker::Lorem.sentence(5) %>
+  words_qty: <%= n %>
+  created_at: <%= 42.days.ago %>
+  user: pedobear
+<% end %>

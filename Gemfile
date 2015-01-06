@@ -10,7 +10,7 @@ gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
 gem 'rails-html-sanitizer', '1.0.1'
 gem 'sdoc',                 '0.4.0', group: :doc
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'faker',                '1.4.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.10'

@@ -1,0 +1,18 @@
+<div class="lesson">
+<li id="lesson-<%= lesson.id %>">
+  <span class="title"> <%= lesson.title %> </span>
+  <span class="description"> <%= lesson.description %> </span>
+  <span class="stats">
+    Nr of words: <%= lesson.words_qty %>.    Last excercise: <%= lesson.last_excercise ? "#{time_ago_in_words(lesson.last_excercise)} ago." : "never." %> 
+  </span>
+  <div class="buttons">
+    <%= link_to edit_lesson_path(lesson) do %>
+     <span class="glyphicon glyphicon-pencil" title="edit"></span>
+   <% end %>
+   <%= link_to lesson, method: :delete, data: { confirm: "Are you sure?" } do %>
+     <span class="glyphicon glyphicon-trash" title="delete"></span>
+   <% end %>
+  </div>
+</li>
+</div>
+

@@ -11,15 +11,15 @@
 <%end%>
 <p>
 	<%= f.label :title %>
-	<%= f.text_field :title%>
+	<%= f.text_field :title, class: 'form-control'%>
 </p>
 
 <p>
 	<%= f.label :description%>
-	<%= f.text_area :description%>
+	<%= f.text_area :description, class: 'form-control'%>
 </p>
 
 <p>
-	<%= f.submit %>
+	<%= f.submit "Add lesson", class: "btn btn-primary" %>
 </p>
 <% end %>

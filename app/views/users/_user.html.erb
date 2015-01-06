@@ -1,7 +1,16 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
+<li class="users">
+  <h3>
+    <%= gravatar_for user, size: 50 %>
+    <%= link_to user.name, user %>
+  </h3>
+  
+  <% if user != current_user %>
+  <div class="buttons">
+    <%= link_to edit_user_path(user) do %>
+     <span class="glyphicon glyphicon-pencil" title="edit"></span>
+   <% end %>
+   <%= link_to user, method: :delete, data: { confirm: "Are you sure?" } do %>
+     <span class="glyphicon glyphicon-trash" title="delete"></span>
+   <% end %>
+   <% end %>
 </li>  

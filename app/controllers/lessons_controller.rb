@@ -1,11 +1,12 @@
 class LessonsController < ApplicationController
+  before_action :logged_in_user
   
   def new
     @lesson = Lesson.new
   end
   
   def create
-    @lesson = Lesson.new(lesson_params)
+    @lesson = current_user.lessons.build(lesson_params)
     
     if @lesson.save
       redirect_to @lesson
@@ -15,7 +16,7 @@ class LessonsController < ApplicationController
   end
   
   def show
-    @lesson = Lesson.find(params[:id])
+    @lesson = current_user.lessons.find(params[:id])
     #binding.pry
     @lesson_translations = @lesson.translations.to_a.delete_if { |x| x.new_record? }
   end
@@ -42,8 +43,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
-    
-    redirect_to lessons_path
+    redirect_to current_user
   end
   private 
   
