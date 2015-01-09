@@ -1,5 +1,13 @@
+<% provide :title, "New lesson" %>
 <h1>New Lesson</h1>
 
-<%= render 'form' %>
-<%= link_to 'back', current_user %>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for @lesson do |f| %>
+            <%= render "fields", f: f %>
+            <%= f.submit "Create lesson", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
 
+<%= link_to 'back', current_user %>

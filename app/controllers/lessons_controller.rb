@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   before_action :logged_in_user
+  before_action :lesson_owner_or_admin, only: [:show, :update]
   
   def new
     @lesson = Lesson.new
@@ -7,7 +8,6 @@ class LessonsController < ApplicationController
   
   def create
     @lesson = current_user.lessons.build(lesson_params)
-    
     if @lesson.save
       redirect_to @lesson
     else 
@@ -16,8 +16,7 @@ class LessonsController < ApplicationController
   end
   
   def show
-    @lesson = current_user.lessons.find(params[:id])
-    #binding.pry
+    @lesson = Lesson.find(params[:id])
     @lesson_translations = @lesson.translations.to_a.delete_if { |x| x.new_record? }
   end
   
@@ -30,8 +29,6 @@ class LessonsController < ApplicationController
   end
   
   def update 
-    @lesson = Lesson.find(params[:id])
-    
     if @lesson.update(lesson_params) 
       redirect_to @lesson
     else 
@@ -49,5 +46,11 @@ class LessonsController < ApplicationController
   
   def lesson_params
     params.require(:lesson).permit(:title, :description)
+  end
+
+  # Redirects unless current user owns this lesson
+  def lesson_owner_or_admin
+    @lesson = Lesson.find(params[:id])
+    redirect_to current_user unless @lesson.user_id == current_user.id || current_user.admin?
   end
 end
