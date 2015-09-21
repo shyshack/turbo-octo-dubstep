@@ -1,22 +1,23 @@
-<p>
-	<strong>Title:</strong>
-	<%= @lesson.title %>
-</p>
-<p>
-	<strong>Description:</strong>
-	<%= @lesson.description %>
-	
-</p>	
-<p>
-	Nr of words: <%= @lesson.words_qty%>
-</p>
-
-<h2>Translations</h2>
-<%= render @lesson_translations %>
-
-
-<h2>Add new word:</h2>
-<%= render "translations/form"%>
-
-<%= link_to 'back', lessons_path%>
-| <%= link_to 'edit', edit_lesson_path(@lesson)%>
+<% provide :title, @lesson.title %>
+<div class="row subpage">
+	<h3>
+	<div class="col-md-6">
+		<p class="subpage_title"><%= @lesson.title %></p>
+	</div>
+	<div class="col-md-6">
+		<%= link_to '#', title: "add new word", class: "buttons" do %>
+    	 	<span class="glyphicon glyphicon-plus add"></span>
+    	<% end %>
+	</div>
+	</h3>
+</div>
+<div class="row">
+	<% if @lesson.translations.any? %>
+		<div class="col-md-8">
+			<ol class="translations">
+				<%= render @lesson_translations %>
+			</ol>
+		</div>
+		
+	<% end %>
+</div>

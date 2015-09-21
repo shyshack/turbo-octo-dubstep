@@ -40,8 +40,9 @@ class LessonsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
-    redirect_to current_user
+    redirect_to currently_viewed_user
   end
+  
   private 
   
   def lesson_params
@@ -52,5 +53,10 @@ class LessonsController < ApplicationController
   def lesson_owner_or_admin
     @lesson = Lesson.find(params[:id])
     redirect_to current_user unless @lesson.user_id == current_user.id || current_user.admin?
+  end
+  
+  # Returns user that is currently viewed - does not have to be current_user
+  def currently_viewed_user
+    @currently_viewed_user ||= User.find(@lesson.user_id)
   end
 end

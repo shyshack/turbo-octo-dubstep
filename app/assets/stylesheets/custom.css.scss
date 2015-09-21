@@ -90,6 +90,7 @@ footer {
     color: $gray;
     &:hover {
       color: $gray-darker;
+      text-decoration: none;
     }
   }
   small {
@@ -189,12 +190,10 @@ input {
 .subpage {
   .subpage_title {
     position: absolute;
-    left: 0;
     padding-bottom: 10px;
   }
   .buttons {
    position: absolute;
-   right: 0;
    margin-right: 10px;
    padding-bottom: 10px;
   }
@@ -252,9 +251,31 @@ input {
     color: $gray-light;
     margin-left: 20px;
   }
+  /*.list-group {
+    .list-group-item:hover {
+      background: $gray-light;
+    }
+  }
+  */
 }
+/* translations */
 
+.translations {
+  list-style: none;
+  padding: 10px;
+  margin-top: 40px;
+  li {
+    border-top: 1px solid #e8e8e8;
+    padding: 10px 0;
+  }
+  a {
+    color: $gray-light;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+}
 /* miscellaneous */
+
 
 .debug_dump {
   clear: both;

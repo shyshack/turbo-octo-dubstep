@@ -1,13 +1,14 @@
-<p>
-	<strong> Translation: </strong>
-	<%= translation.first_language %>   -   <%= translation.second_language %>
-</p>
-<p>
-	<strong> Association: </strong>
-	<%= translation.tip %>
-</p>
-<p>
-	<strong> Example of use: </strong>
-	<%= translation.example %> 
-</p>
-<p> <%= link_to 'delete',  [translation.lesson, translation], method: :delete, data: {confirm: 'Are you sure?'} %></p>
+<div class="row">
+	<div class="col-md-8">
+		<li id="translation-<%= translation.id %>">
+			<span class="header"> <h4><%= translation.first_language %> - <%= translation.second_language %> </h4></span>
+			<span class="additional"> <%= translation.tip %> </span>
+			<span class="additional"> <%= translation.example %> </span>
+		</li>
+	</div>
+	<div class="col-md-4">
+		<%= link_to [translation.lesson, translation], method: :delete, data: {confirm: 'Are you sure?'} do %>
+    	 	<span class="glyphicon glyphicon-trash delete" title="delete"></span>
+    	<% end %>
+	</div>
+</div>
